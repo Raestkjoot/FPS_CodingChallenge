@@ -2,7 +2,6 @@
 
 
 #include "HealthComponent.h"
-#include "Kismet/GameplayStatics.h"
 #include "Turret.h"
 
 // Sets default values for this component's properties
@@ -37,13 +36,8 @@ void UHealthComponent::DamageTaken(AActor* DamagedActor, float Damage, const UDa
 
 	if (Health <= 0.f)
 	{
-		if (ATurret* turret = Cast<ATurret>(DamagedActor))
-		{
-			turret->HandleDestruction();
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Player died"));
-		}
+		HandleDestruction();
 	}
 }
+
+void UHealthComponent::HandleDestruction() { }

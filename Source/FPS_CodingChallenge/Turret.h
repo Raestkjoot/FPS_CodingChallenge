@@ -15,8 +15,6 @@ public:
 	// Sets default values for this actor's properties
 	ATurret();
 
-	void HandleDestruction();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -42,12 +40,6 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	class UParticleSystem* DeathParticles;
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	class USoundBase* DeathSound;
-	UPROPERTY(EditAnywhere, Category = "Combat")
-	TSubclassOf<class UCameraShakeBase> DeathCameraShakeClass;
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	float FireRange = 800.f;
 

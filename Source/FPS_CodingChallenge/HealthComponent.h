@@ -20,6 +20,12 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	virtual void HandleDestruction();
+
+	UFUNCTION()
+	virtual void DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, class AController* Instigator, AActor* DamageCauser);
+
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -28,9 +34,5 @@ private:
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 100.f;
 	float Health = 0.f;
-		
-	UFUNCTION()
-	void DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, class AController* Instigator, AActor* DamageCauser);
-
 	class AFirstPersonGameMode* FirstPersonGameMode;
 };

@@ -48,18 +48,6 @@ void ATurret::Tick(float DeltaTime)
 	}
 }
 
-void ATurret::HandleDestruction()
-{
-	if (DeathParticles)
-		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles, GetActorLocation(), GetActorRotation());
-	if (DeathSound)
-		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
-	if (DeathCameraShakeClass)
-		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathCameraShakeClass);
-
-	Destroy();
-}
-
 void ATurret::RotateTurret(FVector LookAtTarget)
 {
 	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();
@@ -83,7 +71,7 @@ void ATurret::CheckFireCondition()
 		return;
 	}
 
-	if (InFireRange())// && PlayerCharacter->bAlive)
+	if (InFireRange())
 	{
 		Fire();
 	}
