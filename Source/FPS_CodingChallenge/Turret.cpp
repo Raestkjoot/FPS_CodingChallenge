@@ -3,7 +3,7 @@
 
 #include "Turret.h"
 #include "Components/CapsuleComponent.h"
-//#include "Projectile.h"
+#include "Projectile.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystem.h"
 #include "GameFramework/Character.h"
@@ -32,7 +32,6 @@ void ATurret::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	// Get player character reference
 	PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 
 	GetWorldTimerManager().SetTimer(FireRateTimerHandle, this, &ATurret::CheckFireCondition, FireRate, true);
@@ -73,8 +72,8 @@ void ATurret::Fire()
 	FVector Location = ProjectileSpawnPoint->GetComponentLocation();
 	FRotator Rotation = ProjectileSpawnPoint->GetComponentRotation();
 
-	//AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
-	//Projectile->SetOwner(this);
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
+	Projectile->SetOwner(this);
 }
 
 void ATurret::CheckFireCondition()
